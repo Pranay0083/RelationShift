@@ -4,7 +4,7 @@ import { Spinner } from './Spinner'
 
 type Props = {
     state: boolean
-    className: string
+    className?: string
     children: React.ReactNode   
     color?: string
 }

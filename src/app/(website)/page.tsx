@@ -48,9 +48,9 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-white to-blue-50 font-bold text-slate-900 shadow-lg transition-transform hover:scale-105">
-                  li
+                  RS
                 </div>
-                <span className="text-xl font-semibold text-white">ChatGenie</span>
+                <span className="text-xl font-semibold text-white">RelationShift</span>
               </div>
               <nav className="hidden space-x-8 text-sm font-medium text-blue-100 md:block">
                 <Link href="#features" className="hover:text-white transition-colors">Features</Link>
@@ -70,10 +70,10 @@ export default function Home() {
               </div>
               <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl [text-wrap:balance]">
                 Transform Your Instagram Engagement with{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">ChatGenie</span>
+                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">RelationShift</span>
               </h1>
               <p className="mx-auto mt-8 max-w-2xl text-lg text-blue-100">
-                ChatGenie revolutionizes how you connect with your audience on
+                RelationShift revolutionizes how you connect with your audience on
                 Instagram. Automate responses and boost engagement effortlessly,
                 turning interactions into valuable business opportunities.
               </p>

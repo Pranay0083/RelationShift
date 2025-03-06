@@ -1,24 +1,77 @@
-'use client'
-import { usePaths } from '@/hooks/use-nav'
-import React from 'react'
+"use client";
+import { usePaths } from "@/hooks/use-nav";
+import { LogoSmall } from "@/svgs/logo-small";
+import React from "react";
+import Items from "./items";
+import { Separator } from "@/components/ui/separator";
+import ClerkAuthState from "../clerk-auth-state";
+import { HelpCircle } from "lucide-react";
+import { SubscriptionPlan } from "../subscription-plan";
+import UpgradeCard from "./upgrade";
 
 type Props = {
-    slug: string
-}
+  slug: string;
+};
 
-const Sidebar = ({slug}: Props) => {
-const { page } = usePaths()
+const Sidebar = ({ slug }: Props) => {
+  const { page } = usePaths();
   return (
-    <div className='w-[250px] border-2 radial fixed left-0 lg:inline-block border-[#545454] 
+    <div
+      className="w-[250px] border-[1px] radial fixed left-0 lg:inline-block border-[#545454] 
     bg-gradient-to-b from-[#7688DD] via-[#171717] to-[#7688DD] hidden bottom-0 top-0 
-    m-3 rounded-3xl overflow-hidden'>
-        <div className="flex flex-col gap-y-5 w-full h-full p-3 bg-[#171717] 
+    m-3 rounded-3xl overflow-hidden"
+    >
+      <div
+        className="flex flex-col w-full h-full p-3 bg-[#0e0e0e] 
         bg-opacity-90 bg-clip-padding backdrop-filter 
-        backdorp-blur-safari backdrop-blur-3xl">
-            
+        backdrop-blur-safari backdrop-blur-3xl"
+      >
+        {/* Top section */}
+        <div className="flex gap-x-2 items-center p-5 justify-center">
+          <div className="flex items-center gap-4">
+            <LogoSmall size={32} />
+            <div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                RelationShift
+              </h1>
+              <p className="text-slate-400 text-xs">Automated DM Management</p>
+            </div>
+          </div>
         </div>
+        
+        {/* Navigation */}
+        <div className="flex flex-col gap-y-2 py-3">
+          <Items page={page} slug={slug} />
+        </div>
+        
+        <div className="px-16 mt-4">
+          <Separator orientation="horizontal" className="bg-[#333336]"/>
+        </div>
+        
+        {/* Profile section */}
+        <div className="px-3 flex flex-col gap-y-5 mt-4">
+          <div className="flex gap-x-2">
+            <ClerkAuthState />
+            <p className="text-[#9B9CA0]">Profile</p>
+          </div>
+          <div className="flex gap-x-3">
+            <HelpCircle />
+            <p className="text-[#9B9CA0]">Help</p>
+          </div>
+        </div>
+        
+        {/* Spacer to push subscription to bottom */}
+        <div className="flex-grow"></div>
+        
+        {/* Subscription Plan at bottom */}
+        <div className="mt-auto">
+          <SubscriptionPlan type="FREE">
+            <UpgradeCard />
+          </SubscriptionPlan>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
