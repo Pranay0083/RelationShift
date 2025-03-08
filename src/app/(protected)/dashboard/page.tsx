@@ -1,19 +1,16 @@
-import Sidebar from '@/components/global/sidebar'
-import React from 'react'
-import Layout from './[slug]/layout'
+import Sidebar from "@/components/global/sidebar";
+import React from "react";
+import { onBoardUser } from "@/actions/user";
+import { redirect } from "next/navigation";
 
-type Props = {
-}
+type Props = {};
 
 const page = async (props: Props) => {
-    //server action onboard the user
-    //200 || 201 dashboard/:id
+  const user = await onBoardUser();
+  if (user.status === 200 || user.status === 201) {
+    return redirect(`dashboard/${user.data?.firstname}${user.data?.lastname}`);
+  }
+  return redirect("/sign-in");
+};
 
-  return (
-    <div>
-      page
-    </div>
-  )
-}
-
-export default page
+export default page;
