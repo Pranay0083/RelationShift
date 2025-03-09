@@ -3,10 +3,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "../providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-import { Plus_Jakarta_Sans } from 'next/font/google'
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import ReactQueryProvider from "@/providers/react-query-provider";
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ['latin']})
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "RelationShift",
@@ -19,23 +20,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
-        <body
+    <html lang="en">
+      <body
         suppressHydrationWarning
-          className={`${jakarta.className} antialiased`}
+        className={`${jakarta.className} antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-          >
           <ClerkProvider>
-          {children}
-          <Toaster />
+            <ReactQueryProvider>
+              {children}
+              <Toaster />
+            </ReactQueryProvider>
           </ClerkProvider>
-          </ThemeProvider>
-        </body>
-      </html>
-    
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

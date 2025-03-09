@@ -1,21 +1,31 @@
-import React from 'react'
-import { Button } from '@/components/ui/button'
-import Loader from '../loader'
-import { BotIcon } from 'lucide-react'
+"use client";
 
-type Props = {}
+import React, { useMemo } from "react";
+import { Button } from "@/components/ui/button";
+import Loader from "../loader";
+import { BotIcon } from "lucide-react";
+import { useCreateAutomation } from "@/hooks/use-automation";
+import { v4 } from "uuid";
 
-const CreateAutomation = (props : Props) => {
+type Props = {};
+
+const CreateAutomation = (props: Props) => {
+  const mutationId = useMemo(() => v4(), []);
+  const { isPending, mutate } = useCreateAutomation(mutationId);
+
+  console.log(mutationId)
+
   return (
-    <Button className='lg:px-10, py-6 bg-gradient-to-br hover:opacity-80 text-while rounded-full from-[#3352cc] font-medium to-[#1c2d70]'>
-        <Loader state={false} >
-            <BotIcon />
-            <p className="lg:inline hidden">
-                Create an Automation
-            </p>
-        </Loader>
+    <Button
+      className="lg:px-10, py-6 bg-gradient-to-br hover:opacity-80 text-while rounded-full from-[#3352cc] font-medium to-[#1c2d70]"
+      onClick={() => mutate({ name: "Untitled", id: mutationId, createdAt: new Date(), keywords: [] })}
+    >
+      <Loader state={isPending}>
+        <BotIcon />
+        <p className="lg:inline hidden">Create an Automation</p>
+      </Loader>
     </Button>
-  )
-}
+  );
+};
 
-export default CreateAutomation
+export default CreateAutomation;

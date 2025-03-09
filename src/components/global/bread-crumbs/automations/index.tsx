@@ -1,4 +1,5 @@
 import { ChevronRight, PencilIcon } from "lucide-react";
+import ActivateAutomationButton from "../../activate-automation-button";
 
 type Props = {
   id: string;
