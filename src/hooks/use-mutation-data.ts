@@ -21,9 +21,10 @@ export const useMutationData = (
             if (data?.status === 200) {
                 toast.success(data.data || "Operation successful")
             } else {
+                console.log({data})
                 toast.error(data.data || "An error occurred")
             }
-            
+
             if (onSuccess) {
                 onSuccess()
             }
@@ -44,6 +45,6 @@ export const useMutationDataState = (mutationKey: MutationKey) => {
             status: mutation.state.status,
         })
     })
-    const latestVariable = data[data.length - 1]
+    const latestVariable = data.length > 0 ? data[data.length - 1] : undefined
     return { latestVariable }
 }

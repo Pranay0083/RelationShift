@@ -7,22 +7,18 @@ import GradientButton from "../gradient-button";
 import { useQueryAutomations } from "@/hooks/use-queries";
 import CreateAutomation from "../create-automations";
 import { Button } from "@/components/ui/button";
-import {
-  useMutationData,
-  useMutationDataState,
-} from "@/hooks/use-mutation-data";
+import { useMutationDataState } from "@/hooks/use-mutation-data";
 
 type Props = {};
-const AutomationList = (props: Props) => {
 
+const AutomationList = (props: Props) => {
   const { data } = useQueryAutomations();
 
-  const {latestVariable} = useMutationDataState(['create-automation']);
+  const { latestVariable } = useMutationDataState(["create-automation"]);
 
-  console.log(latestVariable);
+  console.log({latestVariable});
 
   const { pathname } = usePaths();
-
 
   if (data?.status !== 200 || data.data.length === 0) {
     return (
@@ -35,10 +31,11 @@ const AutomationList = (props: Props) => {
 
   const optimisticUiData = useMemo(() => {
     if (latestVariable?.variables) {
+      // This correctly handles undefined latestVariable
       const test = [latestVariable.variables, ...data.data];
-      return {data: test}
+      return { data: test };
     }
-    return data
+    return data;
   }, [latestVariable, data]);
 
   return (

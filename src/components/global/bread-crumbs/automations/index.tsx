@@ -1,5 +1,10 @@
+"use client";
 import { ChevronRight, PencilIcon } from "lucide-react";
 import ActivateAutomationButton from "../../activate-automation-button";
+import { useQueryAutomation, useQueryAutomations } from "@/hooks/use-queries";
+import { useEditAutomation } from "@/hooks/use-automation";
+import { useMutationDataState } from "@/hooks/use-mutation-data";
+import { Input } from "@/components/ui/input";
 
 type Props = {
   id: string;
@@ -7,6 +12,10 @@ type Props = {
 
 const AutomationsBreadCrumb = ({ id }: Props) => {
   //WIP: get the automation data
+  const { data } = useQueryAutomation(id);
+  const { isPending, edit, inputRef, enableEdit } = useEditAutomation(id);
+
+  const { latestVariable } = useMutationDataState(["update-automation"]);
   // mutation
   return (
     <div className="rounded-full w-full p-5 bg-[#18181B1A] flex items-center">
@@ -15,12 +24,31 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
         <ChevronRight color="#9B9CA0" className="flex-shrink-0" />
         <span className="flex gap-x-3 items-center min-w-0">
           {/* WIP: Show the editing data */}
-          <p className="text-[#9B9CAO] truncate">
-            This is the automation title
-          </p>
-          <span className="cursor-pointer hover:opacity-75 duration-100 transition flex-shrink-0 mr-4">
+          {edit ? (
+            <Input
+              ref={inputRef}
+              placeholder={
+                isPending ? latestVariable.variables : "Add a new name"
+              }
+              className="bg-transparent h-auto outline-none text-base border-none p-0"
+            />
+          ) : (
+            <p className="text=[#9b9ca0] truncate">
+              {latestVariable?.variables
+                ? latestVariable.variables.name
+                : data?.data?.name}
+            </p>
+          )}
+          {/* <span className="cursor-pointer hover:opacity-75 duration-100 transition flex-shrink-0 mr-4">
             <PencilIcon size={14} />
-          </span>
+          </span> */}
+          {edit ? (
+            <></>
+          ) : (
+            <span className="cursor-pointer hover:opacity-75 duration-100 transition flex-shrink-0 mr-4" onClick={enableEdit}>
+              <PencilIcon size={14} />
+            </span>
+          )}
         </span>
       </div>
       <div className="flex items-center gap-x-5 ml-auto">

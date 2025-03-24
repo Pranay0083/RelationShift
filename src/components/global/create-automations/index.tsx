@@ -13,7 +13,7 @@ const CreateAutomation = (props: Props) => {
   const mutationId = useMemo(() => v4(), []);
   const { isPending, mutate } = useCreateAutomation(mutationId);
 
-  console.log(mutationId)
+  console.log({mutationId})
 
   return (
     <Button

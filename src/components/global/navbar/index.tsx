@@ -88,10 +88,7 @@ const Navbar = ({ slug }: Props) => {
           <CreateAutomation />
           <Notifications />
         </div>
-        <MainBreadCrumb 
-          page={page === slug ? "Home" : page}
-          slug={slug}
-        />
+        <MainBreadCrumb page={page === slug ? "Home" : page} slug={slug} />
       </div>
     )
   );

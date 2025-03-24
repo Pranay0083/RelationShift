@@ -1,12 +1,9 @@
 'use server'
-
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { createUser, findUser } from './queries'
 import { refreshToken } from '@/lib/fetch'
 import { updateIntegration } from '../integrations'
-import { lastDayOfDecade } from 'date-fns'
-import { stat } from 'fs'
 
 export const onCurrentUser = async () => {
     const user = await currentUser()
@@ -60,9 +57,9 @@ export const onUserInfo = async () => {
     try {
         const profile = await findUser(user.id)
         if (profile) {
-            return {status: 200, data: profile}
+            return { status: 200, data: profile }
         }
-        return {status: 404, data: "User not found"}
+        return { status: 404, data: "User not found" }
     }
     catch (error) {
         return { status: 500, data: error }

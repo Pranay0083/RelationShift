@@ -1,30 +1,26 @@
-import React from 'react'
+import React from "react";
 import {
-    Sheet as ShadcnSheet,
-    SheetContent,
-    SheetTrigger
-} from '@/components/ui/sheet'
+  Sheet as ShadcnSheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 type Props = {
-    trigger: React.ReactNode;
-    children: React.ReactNode;
-    className?: string;
-    side: 'left' | 'right';
-}
+  trigger: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+  side: "left" | "right";
+};
 
-const Sheet = ({children, trigger, className, side}: Props) => {
+const Sheet = ({ children, trigger, className, side }: Props) => {
   return (
     <ShadcnSheet>
-        <SheetTrigger className={className}>
-            {trigger}
-        </SheetTrigger>
-        <SheetContent 
-        side={side}
-        className='p-0'>
-            {children}
-        </SheetContent>
+      <SheetTrigger className={className}>{trigger}</SheetTrigger>
+      <SheetContent side={side} className="p-0">
+        {children}
+      </SheetContent>
     </ShadcnSheet>
-  )
-}
+  );
+};
 
-export default Sheet
+export default Sheet;

@@ -38,16 +38,16 @@ const Sidebar = ({ slug }: Props) => {
             </div>
           </div>
         </div>
-        
+
         {/* Navigation */}
         <div className="flex flex-col gap-y-2 py-3">
           <Items page={page} slug={slug} />
         </div>
-        
+
         <div className="px-16 mt-4">
-          <Separator orientation="horizontal" className="bg-[#333336]"/>
+          <Separator orientation="horizontal" className="bg-[#333336]" />
         </div>
-        
+
         {/* Profile section */}
         <div className="px-3 flex flex-col gap-y-5 mt-4">
           <div className="flex gap-x-2">
@@ -59,10 +59,10 @@ const Sidebar = ({ slug }: Props) => {
             <p className="text-[#9B9CA0]">Help</p>
           </div>
         </div>
-        
+
         {/* Spacer to push subscription to bottom */}
         <div className="flex-grow"></div>
-        
+
         {/* Subscription Plan at bottom */}
         <div className="mt-auto">
           <SubscriptionPlan type="FREE">

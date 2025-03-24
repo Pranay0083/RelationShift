@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-blue-900 to-black">
+      <section className="relative bg-gradient-to-b from-slate-900 via-blue-900 to-black">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
         <div className="relative pb-20">
           <div className="container mx-auto px-4 py-8">

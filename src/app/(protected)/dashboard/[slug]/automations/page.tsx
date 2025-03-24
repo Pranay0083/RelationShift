@@ -2,7 +2,9 @@ import AutomationList from "@/components/global/automation-list";
 import CreateAutomation from "@/components/global/create-automations";
 import { Check } from "lucide-react";
 import React from "react";
+
 type Props = {};
+
 const Page = (props: Props) => {
   //WIP: connect real automations list
   return (
