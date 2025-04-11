@@ -21,11 +21,17 @@ const ThenAction = ({ id }: Props) => {
     register,
     isPending,
   } = useListener(id);
+
+  // Add this debug check
+  console.log("Available listeners:", AUTOMATION_LISTENERS);
+  console.log("Current selected listener:", Listener);
+
   return (
     <TriggerButton label="Then">
       <div className="flex flex-col gap-y-2">
-        {AUTOMATION_LISTENERS.map((listener) =>
-          listener.type === "SMARTAI" ? (
+        {AUTOMATION_LISTENERS.map((listener) => {
+          console.log("Rendering listener:", listener.type);
+          return listener.type === "SMARTAI" ? (
             <SubscriptionPlan key={listener.type} type="PRO">
               <div
                 onClick={() => onSetListener(listener.type)}
@@ -61,22 +67,22 @@ const ThenAction = ({ id }: Props) => {
               </div>
               <p>{listener.description}</p>
             </div>
-          )
-        )}
+          );
+        })}
         <form onSubmit={onFormSubmit} className="flex flex-col gap-y-2">
           <Textarea
-          placeholder={
-            Listener === "SMARTAI" 
-            ? "add a prompt for the smart AI"
-            : "add a message for the user"
-          }
-          {...register("prompt")}
-          className="bg-background-80 outline-none ring-0 focus:ring-0"
+            placeholder={
+              Listener === "SMARTAI"
+                ? "add a prompt for the smart AI"
+                : "add a message for the user"
+            }
+            {...register("prompt")}
+            className="bg-background-80 outline-none ring-0 focus:ring-0"
           />
-          <Input 
-          {...register("reply")}
-          placeholder="Add a reply for commetnts (optional)"
-          className="bg-background-80 outline-none ring-0 focus:ring-0"
+          <Input
+            {...register("reply")}
+            placeholder="Add a reply for commetnts (optional)"
+            className="bg-background-80 outline-none ring-0 focus:ring-0"
           />
           <Button className="bg-gradient-to-br w-full from-[#3352cc] font-medium text-white to-[#1c2d70]">
             <Loader state={isPending}>Add Listener</Loader>
